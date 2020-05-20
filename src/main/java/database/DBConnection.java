@@ -10,9 +10,9 @@ public class DBConnection {
     public static Connection get() throws SQLException {
         if (conn == null) {
             conn = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/tinderdb",
-                    "postgres",
-                    "Engineer6544"
+                    "ec2-35-171-31-33.compute-1.amazonaws.com",
+                    "khcilykbviawgk",
+                    "11db556325dc247da7a87795d80094e9fd489f8be2addbd2b751cd15dd2b2510"
             );
         }
         return conn;

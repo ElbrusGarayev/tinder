@@ -9,8 +9,9 @@ import java.io.PrintWriter;
 
 public class ErrorServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         PrintWriter writer = resp.getWriter();
         writer.println("<h1 style = \" text-align: center; \" >404 NOT FOUND!!!</h1>");
+        resp.sendRedirect("/login");
     }
 }

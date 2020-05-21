@@ -19,7 +19,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="chat-main col-6 offset-3">
+        <div class="chat-main col-md-6 offset-3">
             <div class="col-md-12 chat-header">
                 <div class="row header-one text-white p-1">
                     <div class="col-md-6 name pl-2">
@@ -49,44 +49,41 @@
                     <#list messages as message>
                         <ul class="p-0">
                             <#if message.sender == sender>
-                            <li class="send-msg float-right mb-2">
-                                <p class="pt-1 pb-1 pl-2 pr-2 m-0 rounded">
-                                    ${message.getContent()}
-                                </p>
-                            </li>
-                            <#else>
-                            <li class="receive-msg float-left mb-2">
-                                <div class="sender-img">
-                                    <img src="${receiver.getUrl()}" class="float-left">
-                                </div>
-                                <div class="receive-msg-desc float-left ml-2">
-                                    <p class="bg-white m-0 pt-1 pb-1 pl-2 pr-2 rounded">
+                                <li class="send-msg float-right mb-2">
+                                    <p class="pt-1 pb-1 pl-2 pr-2 m-0 rounded">
                                         ${message.getContent()}
                                     </p>
-                                    <span class="receive-msg-time">${message.getSender()}, Jan 25, 6:20 PM</span>
-                                </div>
-                            </li>
+                                </li>
+                            <#else>
+                                <li class="receive-msg float-left mb-2">
+                                    <div class="sender-img">
+                                        <img src="${receiver.getUrl()}" class="float-left">
+                                    </div>
+                                    <div class="receive-msg-desc float-left ml-2">
+                                        <p class="bg-white m-0 pt-1 pb-1 pl-2 pr-2 rounded">
+                                            ${message.getContent()}
+                                        </p>
+                                        <span class="receive-msg-time">${message.getSender()}, Jan 25, 6:20 PM</span>
+                                    </div>
+                                </li>
                             </#if>
                         </ul>
                     </#list>
                 </div>
                 <div class="col-md-12 p-2 msg-box border border-primary">
-                    <div class="row">
-                        <div class="col-md-2 options-left">
-                            <i class="fa fa-smile-o"></i>
-                        </div>
-                        <form method="post">
-                            <div class="col-md-7 pl-0">
-                                <input type="text" name = "content" class="border-0" placeholder=" Send message"/>
+                    <form method="post">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <input type="text" name="content" class="border-0 w-100 p-3 rounded" placeholder=" Send message"/>
                             </div>
-                            <div class="ui-button float-right">
-                                <input type="submit" value="send" name="button"/>
+                            <div class="col-md-2">
+                                <input type="submit" class="btn btn-info w-100 p-3" value="Send" name="button"/>
                             </div>
-                        </form>
-                        <div class="col-md-3 text-right options-right">
-                            <i class="fa fa-picture-o mr-2"></i>
+                            <div class="col-md-3 text-right options-right">
+                                <i class="fa fa-picture-o mr-2"></i>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

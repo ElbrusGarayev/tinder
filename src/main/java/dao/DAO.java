@@ -8,6 +8,8 @@ public interface DAO<A> {
 
     List<A> getAll() throws SQLException;
 
+    List<A> getAll(int id1, int id2) throws SQLException;
+
     void insert(A t);
 
     List<A> getAll(int id) throws SQLException;

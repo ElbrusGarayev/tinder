@@ -15,14 +15,19 @@ public class DAOLike implements DAO<Like>{
     private List<Like> likes;
 
     @Override
-    public Like get(int id) throws SQLException {
+    public Like get(int id) {
         return null;
     }
 
     @Override
-    public List<Like> getAll() throws SQLException {
+    public List<Like> getAll() {
         this.likes = DBOperation.getLikes();
         return likes;
+    }
+
+    @Override
+    public List<Like> getAll(int id1, int id2) {
+        return null;
     }
 
     @Override
@@ -31,7 +36,7 @@ public class DAOLike implements DAO<Like>{
     }
 
     @Override
-    public List<Like> getAll(int id) throws SQLException {
+    public List<Like> getAll(int id) {
         return null;
     }
 

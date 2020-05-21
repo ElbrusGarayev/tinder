@@ -23,7 +23,7 @@ public class DAOUser implements DAO<User>{
 
     @Override
     public User get(int id) {
-        return null;
+        return DBOperation.getUser(id);
     }
 
     @Override
@@ -33,6 +33,11 @@ public class DAOUser implements DAO<User>{
         } catch (Exception ignored) {
         }
         return users;
+    }
+
+    @Override
+    public List<User> getAll(int id1, int id2) {
+        return null;
     }
 
     @Override

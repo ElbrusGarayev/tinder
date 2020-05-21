@@ -16,13 +16,13 @@ public class MessageFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
-        String pathInfo = req.getPathInfo();
-        try{
-            Integer.parseInt(pathInfo.substring(1));
-            filterChain.doFilter(servletRequest, servletResponse);
-        }catch (NumberFormatException e){
-            resp.sendRedirect("/liked");
-        }
+        if(req.getMethod().equalsIgnoreCase("GET")){
+            if (req.getPathInfo().equalsIgnoreCase("/"))
+                resp.sendRedirect("/list/");
+            else
+                filterChain.doFilter(req, resp);
+        }else
+            filterChain.doFilter(req, resp);
     }
 
     @Override

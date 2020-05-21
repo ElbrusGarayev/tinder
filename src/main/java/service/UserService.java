@@ -4,6 +4,7 @@ import dao.DAOLike;
 import dao.DAOUser;
 import entity.Like;
 import entity.User;
+import lombok.SneakyThrows;
 
 import java.util.List;
 
@@ -26,6 +27,11 @@ public class UserService {
 
     public void addLike(Like like) {
         daoLike.insert(like);
+    }
+
+    @SneakyThrows
+    public User getUser(int id){
+        return daoUser.get(id);
     }
 
 }

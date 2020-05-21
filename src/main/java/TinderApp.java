@@ -33,7 +33,7 @@ public class TinderApp {
                 new RegistrationServlet(engine,new RegisterService(daoUser)))), "/register");
         handler.addServlet((new ServletHolder(new LikeServlet(engine,likeService))), "/liked");
         handler.addServlet((new ServletHolder(
-                new MessageServlet(engine,messageService))), "/messages/*");
+                new MessageServlet(engine, messageService, userService))), "/messages/*");
         handler.addServlet((new ServletHolder(new UserServlet(engine,userService))), "/users");
         handler.addServlet(ErrorServlet.class, "/*");
 

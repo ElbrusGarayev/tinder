@@ -1,6 +1,7 @@
 package database;
 
 import entity.Like;
+import entity.Message;
 import entity.User;
 import lombok.SneakyThrows;
 
@@ -8,53 +9,57 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DBOperation {
+
     @SneakyThrows
-    public static List<User> getAllUsers()  {
+    public static List<User> getAllUsers() {
         Connection conn = DBConnection.get();
-        String QUERY = "select * from users";
-        PreparedStatement stmt = conn.prepareStatement(QUERY);
-        ResultSet outcome = stmt.executeQuery();
         List<User> users = new ArrayList<>();
-        while (outcome.next()) {
-            int id = outcome.getInt("id");
-            String email = outcome.getString("email");
-            String password = outcome.getString("password");
+        String query = "select * from users";
+        PreparedStatement stmt = conn.prepareStatement(query);
+        ResultSet resultSet = stmt.executeQuery();
+        while (resultSet.next()) {
+            int id = resultSet.getInt("id");
+            String email = resultSet.getString("email");
+            String password = resultSet.getString("password");
             users.add(new User(id, email, password));
         }
         return users;
     }
+
     @SneakyThrows
-    public static List<User> getLikedUsers(int user_id)  {
+    public static List<User> getLikedUsers(int user_id) {
         Connection conn = DBConnection.get();
-        String QUERY = "select  *  from users where id  " +
-                "in(select whom from likes where who=" + user_id + " and status = true)";
-        PreparedStatement stmt = conn.prepareStatement(QUERY);
-        ResultSet outcome = stmt.executeQuery();
         List<User> users = new ArrayList<>();
-        while (outcome.next()) {
-            int id = outcome.getInt("id");
-            String email = outcome.getString("email");
-            String name = outcome.getString("name");
-            String surname = outcome.getString("surname");
-            String status = outcome.getString("status");
-            String password = outcome.getString("password");
-            String url = outcome.getString("url");
-            String lastSeen = outcome.getString("lastSeen");
+        String query = "select  *  from users where id  " +
+                "in(select whom from likes where who=" + user_id + " and status = true)";
+        PreparedStatement stmt = conn.prepareStatement(query);
+        ResultSet resultSet = stmt.executeQuery();
+        while (resultSet.next()) {
+            int id = resultSet.getInt("id");
+            String email = resultSet.getString("email");
+            String name = resultSet.getString("name");
+            String surname = resultSet.getString("surname");
+            String status = resultSet.getString("status");
+            String password = resultSet.getString("password");
+            String url = resultSet.getString("url");
+            String lastSeen = resultSet.getString("lastSeen");
             lastSeen = lastSeen.substring(0, 16);
             users.add(new User(id, email, name, surname, status, password, url, lastSeen));
         }
         return users;
     }
+
     @SneakyThrows
-    public static void insertUser(User user)   {
+    public static void insertUser(User user) {
         Connection conn = DBConnection.get();
-        String QUERY = "insert into users (email, name, surname, status, password, url, lastseen) " +
+        String query = "insert into users (email, name, surname, status, password, url, lastseen) " +
                 "values (?, ?, ?, ?, ?, ?, localtimestamp)";
-        PreparedStatement stmt = conn.prepareStatement(QUERY);
+        PreparedStatement stmt = conn.prepareStatement(query);
         stmt.setString(1, user.getEmail());
         stmt.setString(2, user.getName());
         stmt.setString(3, user.getSurname());
@@ -63,56 +68,116 @@ public class DBOperation {
         stmt.setString(6, user.getUrl());
         stmt.execute();
     }
+
     @SneakyThrows
     public static List<Like> getLikes() {
         Connection conn = DBConnection.get();
-        String QUERY = "select * from likes";
-        PreparedStatement stmt = conn.prepareStatement(QUERY);
-        ResultSet outcome = stmt.executeQuery();
         List<Like> likes = new ArrayList<>();
-        while (outcome.next()) {
-            int whoId = outcome.getInt("who");
-            int whomId = outcome.getInt("whom");
-            boolean status = outcome.getBoolean("status");
+        String query = "select * from likes";
+        PreparedStatement stmt = conn.prepareStatement(query);
+        ResultSet resultSet = stmt.executeQuery();
+        while (resultSet.next()) {
+            int whoId = resultSet.getInt("who");
+            int whomId = resultSet.getInt("whom");
+            boolean status = resultSet.getBoolean("status");
             likes.add(new Like(whoId, whomId, status));
         }
         return likes;
     }
+
     @SneakyThrows
     public static void insertLike(Like like) {
         Connection conn = DBConnection.get();
-        String QUERY = String.format("insert into likes values (default, %d, %d, %b)", like.getWho(),
+        String query = String.format("insert into likes values (default, %d, %d, %b)", like.getWho(),
                 like.getWhom(), like.isStatus());
-        PreparedStatement stmt = conn.prepareStatement(QUERY);
+        PreparedStatement stmt = conn.prepareStatement(query);
         stmt.execute();
     }
+
     @SneakyThrows
     public static List<User> getUsersToDisplay(int user_id) {
         Connection conn = DBConnection.get();
-        String QUERY = "select distinct  u.*  from users u  where" +
+        List<User> users = new ArrayList<>();
+        String query = "select distinct  u.*  from users u  where" +
                 " u.id not in(select whom from likes where who = " + user_id + ") and " +
                 " u.id<>" + user_id;
-        PreparedStatement stmt = conn.prepareStatement(QUERY);
-        ResultSet outcome = stmt.executeQuery();
-        List<User> users = new ArrayList<>();
-        while (outcome.next()) {
-            int id = outcome.getInt("id");
-            String email = outcome.getString("email");
-            String name = outcome.getString("name");
-            String surname = outcome.getString("surname");
-            String status = outcome.getString("status");
-            String password = outcome.getString("password");
-            String url = outcome.getString("url");
+        PreparedStatement stmt = conn.prepareStatement(query);
+        ResultSet resultSet = stmt.executeQuery();
+        while (resultSet.next()) {
+            int id = resultSet.getInt("id");
+            String email = resultSet.getString("email");
+            String name = resultSet.getString("name");
+            String surname = resultSet.getString("surname");
+            String status = resultSet.getString("status");
+            String password = resultSet.getString("password");
+            String url = resultSet.getString("url");
             users.add(new User(id, email, name, surname, status, password, url));
         }
         return users;
     }
+
     @SneakyThrows
-    public static void updateLastSeen(int id){
-        Connection connection = DBConnection.get();
+    public static void updateLastSeen(int id) {
+       Connection  conn = DBConnection.get();
         String query = "update users set lastseen = localtimestamp where id = ?";
-        PreparedStatement stmt = connection.prepareStatement(query);
+        PreparedStatement stmt = conn.prepareStatement(query);
         stmt.setInt(1, id);
+        stmt.execute();
+    }
+
+    @SneakyThrows
+    public static User getUser(int id) {
+        Connection conn = DBConnection.get();
+        String query = "select * from users where id = ?";
+        PreparedStatement stmt = conn.prepareStatement(query);
+        stmt.setInt(1, id);
+        ResultSet resultSet = stmt.executeQuery();
+        while (resultSet.next()) {
+            int uid = resultSet.getInt("id");
+            String email = resultSet.getString("email");
+            String name = resultSet.getString("name");
+            String surname = resultSet.getString("surname");
+            String status = resultSet.getString("status");
+            String password = resultSet.getString("password");
+            String url = resultSet.getString("url");
+            String lastseen = resultSet.getString("lastseen");
+            return new User(uid, email, name, surname, status, password, url, lastseen);
+        }
+        return new User();
+    }
+
+    @SneakyThrows
+    public static List<Message> getAllMessages(int sender, int receiver) {
+        Connection conn = DBConnection.get();
+        List<Message> messages = new ArrayList<>();
+        String query = "select * from messages " +
+                "where (sender = ? and receiver = ?) " +
+                "or (sender = ? and receiver = ?)\n" +
+                "order by datetime asc";
+        PreparedStatement stmt = conn.prepareStatement(query);
+        stmt.setInt(1, sender);
+        stmt.setInt(2, receiver);
+        stmt.setInt(3, receiver);
+        stmt.setInt(4, sender);
+        ResultSet resultSet = stmt.executeQuery();
+        while (resultSet.next()) {
+            int id = resultSet.getInt("id");
+            int from = resultSet.getInt("sender");
+            int to = resultSet.getInt("receiver");
+            String content = resultSet.getString("content");
+            messages.add(new Message(id, from, to, content));
+        }
+        return messages;
+    }
+
+    @SneakyThrows
+    public static void insertMessage(Message message) {
+        Connection conn = DBConnection.get();
+        String query = "insert into messages values (default, ?, ?, localtimestamp, ?)";
+        PreparedStatement stmt = conn.prepareStatement(query);
+        stmt.setInt(1, message.getSender());
+        stmt.setInt(2, message.getReceiver());
+        stmt.setString(3, message.getContent());
         stmt.execute();
     }
 }

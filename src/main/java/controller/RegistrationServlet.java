@@ -33,7 +33,6 @@ public class RegistrationServlet extends HttpServlet {
         String password = req.getParameter("psw");
         String repeat = req.getParameter("psw-repeat");
         String url = req.getParameter("url");
-        System.out.println(status + " WARNNNN" + name);
         String message = service.registerUser(email, name, surname, status, password, repeat, url);
         data.put("message", message);
         engine.render("signup.ftl", data, resp);

@@ -19,12 +19,12 @@ public class RegistrationServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         engine.render("signup.ftl", resp);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         HashMap<String, Object> data = new HashMap<>();
         String email = req.getParameter("email");
         String name = req.getParameter("name");
@@ -33,6 +33,7 @@ public class RegistrationServlet extends HttpServlet {
         String password = req.getParameter("psw");
         String repeat = req.getParameter("psw-repeat");
         String url = req.getParameter("url");
+        System.out.println(status + " WARNNNN" + name);
         String message = service.registerUser(email, name, surname, status, password, repeat, url);
         data.put("message", message);
         engine.render("signup.ftl", data, resp);

@@ -52,14 +52,15 @@ public class DBOperation {
     @SneakyThrows
     public static void insertUser(User user)   {
         Connection conn = DBConnection.get();
-        String QUERY = "insert into users (email, name, surname, password, url) " +
-                "values (?, ?, ?, ?, ?)";
+        String QUERY = "insert into users (email, name, surname, status, password, url, lastseen) " +
+                "values (?, ?, ?, ?, ?, ?, localtimestamp)";
         PreparedStatement stmt = conn.prepareStatement(QUERY);
         stmt.setString(1, user.getEmail());
         stmt.setString(2, user.getName());
         stmt.setString(3, user.getSurname());
-        stmt.setString(4, user.getPassword());
-        stmt.setString(5, user.getUrl());
+        stmt.setString(4, user.getStatus());
+        stmt.setString(5, user.getPassword());
+        stmt.setString(6, user.getUrl());
         stmt.execute();
     }
     @SneakyThrows

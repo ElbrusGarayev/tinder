@@ -132,13 +132,13 @@
             <input type="text" placeholder="Enter Status" name="status" required>
 
             <label><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="psw" required>
+            <input type="password" placeholder="Enter Password" name="psw" minlength="5" required>
 
             <label><b>Repeat Password</b></label>
             <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
 
             <label><b>Profile photo</b></label>
-            <input type="text" placeholder="Enter Url" name="url" required>
+            <input type="text" placeholder="Enter Url" name="url" >
             <div class="clearfix">
                 <input type="submit" class="signupbtn" value="Sign Up"></input>
             </div>

@@ -22,15 +22,16 @@ public class UserServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         HashMap<String, Object> data = new HashMap<>();
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
         User selected = service.getUserToDisplay(user);
         if (selected != null) {
-            System.out.println("get");
+            data.put("status", selected.getStatus());
             data.put("image_url", selected.getUrl());
             data.put("name", selected.getName());
+            data.put("surname", selected.getSurname());
             engine.render("like-page.ftl", data, resp);
         } else {
             resp.sendRedirect("/liked");
@@ -38,7 +39,7 @@ public class UserServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String button = req.getParameter("button");
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");

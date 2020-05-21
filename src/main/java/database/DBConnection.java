@@ -7,13 +7,17 @@ import java.sql.SQLException;
 public class DBConnection {
     private static Connection conn;
 
-    public static Connection get() throws SQLException {
+    public static Connection get() {
         if (conn == null) {
-            conn = DriverManager.getConnection(
-                    "ec2-35-171-31-33.compute-1.amazonaws.com",
-                    "khcilykbviawgk",
-                    "11db556325dc247da7a87795d80094e9fd489f8be2addbd2b751cd15dd2b2510"
-            );
+            try{
+                conn = DriverManager.getConnection(
+                        "jdbc:postgresql://ec2-35-171-31-33.compute-1.amazonaws.com/deoq2dpomonefu",
+                        "khcilykbviawgk",
+                        "11db556325dc247da7a87795d80094e9fd489f8be2addbd2b751cd15dd2b2510"
+                );
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
         }
         return conn;
     }

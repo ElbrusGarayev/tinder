@@ -25,7 +25,6 @@ public class DBOperation {
             String password = outcome.getString("password");
             users.add(new User(id, email, password));
         }
-
         return users;
     }
     @SneakyThrows

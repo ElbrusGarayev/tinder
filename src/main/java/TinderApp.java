@@ -2,10 +2,7 @@ import controller.*;
 import dao.DAOLike;
 import dao.DAOMessage;
 import dao.DAOUser;
-import database.ConnDetails;
 import database.DBOperation;
-import database.DbConn;
-import database.DbSetup;
 import filter.MessageFilter;
 import filter.SessionFilter;
 import filter.LoginFilter;
@@ -16,13 +13,11 @@ import org.eclipse.jetty.servlet.ServletHolder;
 import service.*;
 
 import javax.servlet.DispatcherType;
-import java.sql.Connection;
 import java.util.EnumSet;
 
 
 public class TinderApp {
     public static void main(String[] args) throws Exception {
-
         TemplateEngine engine = TemplateEngine.resources("/templates");
         ServletContextHandler handler = new ServletContextHandler(ServletContextHandler.SESSIONS);
         DAOUser daoUser = new DAOUser();

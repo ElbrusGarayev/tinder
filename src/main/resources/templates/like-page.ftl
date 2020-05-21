@@ -16,33 +16,35 @@
 </head>
 <body style="background-color: #f5f5f5;">
 <form method="post">
-    <div class="col-4 offset-4">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-12 col-lg-12 col-md-12 text-center">
-                        <img src=${image_url} alt="" class="mx-auto rounded-circle img-fluid">
-                        <h3 class="mb-0 text-truncated">${name}</h3>
-                        <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6" >
+                <div class="profile bg-light rounded p-2">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <img src=${image_url} alt="" class="mx-auto rounded img-fluid" style="max-height: 450px;">
+                            <h5 class="mt-2 text-truncated">${status}</h5>
+                            <h3 class="mt-2 text-truncated">${name} ${surname}</h3>
+                            <br>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-outline-danger btn-block" name="button"
+                                    value="dislike"><span
+                                        class="fa fa-times"></span> Dislike
+                            </button>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-outline-success btn-block" name="button"
+                                    value="like"><span
+                                        class="fa fa-heart"></span> Like
+                            </button>
+                        </div>
                     </div>
-                    <div class="col-12 col-lg-6">
-                        <button type="submit" class="btn btn-outline-danger btn-block" name="button"
-                                value="dislike"><span
-                                    class="fa fa-times"></span> Dislike
-                        </button>
-                    </div>
-                    <div class="col-12 col-lg-6">
-                        <button type="submit" class="btn btn-outline-success btn-block" name="button"
-                                value="like"><span
-                                    class="fa fa-heart"></span> Like
-                        </button>
-                    </div>
-                    <!--/col-->
                 </div>
-                <!--/row-->
             </div>
-            <!--/card-block-->
         </div>
+        <div class="col-md-3"></div>
     </div>
 </form>
 </body>

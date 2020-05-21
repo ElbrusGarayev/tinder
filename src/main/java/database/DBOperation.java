@@ -14,10 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DBOperation {
+    private static Connection conn = DBConnection.get();
 
     @SneakyThrows
     public static List<User> getAllUsers() {
-        Connection conn = DBConnection.get();
         List<User> users = new ArrayList<>();
         String query = "select * from users";
         PreparedStatement stmt = conn.prepareStatement(query);
@@ -33,7 +33,6 @@ public class DBOperation {
 
     @SneakyThrows
     public static List<User> getLikedUsers(int user_id) {
-        Connection conn = DBConnection.get();
         List<User> users = new ArrayList<>();
         String query = "select  *  from users where id  " +
                 "in(select whom from likes where who=" + user_id + " and status = true)";
@@ -56,7 +55,6 @@ public class DBOperation {
 
     @SneakyThrows
     public static void insertUser(User user) {
-        Connection conn = DBConnection.get();
         String query = "insert into users (email, name, surname, status, password, url, lastseen) " +
                 "values (?, ?, ?, ?, ?, ?, localtimestamp)";
         PreparedStatement stmt = conn.prepareStatement(query);
@@ -71,7 +69,6 @@ public class DBOperation {
 
     @SneakyThrows
     public static List<Like> getLikes() {
-        Connection conn = DBConnection.get();
         List<Like> likes = new ArrayList<>();
         String query = "select * from likes";
         PreparedStatement stmt = conn.prepareStatement(query);
@@ -87,16 +84,14 @@ public class DBOperation {
 
     @SneakyThrows
     public static void insertLike(Like like) {
-        Connection conn = DBConnection.get();
-        String query = String.format("insert into likes values (default, %d, %d, %b)", like.getWho(),
+        String QUERY = String.format("insert into likes values (default, %d, %d, %b)", like.getWho(),
                 like.getWhom(), like.isStatus());
-        PreparedStatement stmt = conn.prepareStatement(query);
+        PreparedStatement stmt = conn.prepareStatement(QUERY);
         stmt.execute();
     }
 
     @SneakyThrows
     public static List<User> getUsersToDisplay(int user_id) {
-        Connection conn = DBConnection.get();
         List<User> users = new ArrayList<>();
         String query = "select distinct  u.*  from users u  where" +
                 " u.id not in(select whom from likes where who = " + user_id + ") and " +
@@ -118,7 +113,6 @@ public class DBOperation {
 
     @SneakyThrows
     public static void updateLastSeen(int id) {
-       Connection  conn = DBConnection.get();
         String query = "update users set lastseen = localtimestamp where id = ?";
         PreparedStatement stmt = conn.prepareStatement(query);
         stmt.setInt(1, id);
@@ -127,7 +121,6 @@ public class DBOperation {
 
     @SneakyThrows
     public static User getUser(int id) {
-        Connection conn = DBConnection.get();
         String query = "select * from users where id = ?";
         PreparedStatement stmt = conn.prepareStatement(query);
         stmt.setInt(1, id);
@@ -148,7 +141,6 @@ public class DBOperation {
 
     @SneakyThrows
     public static List<Message> getAllMessages(int sender, int receiver) {
-        Connection conn = DBConnection.get();
         List<Message> messages = new ArrayList<>();
         String query = "select * from messages " +
                 "where (sender = ? and receiver = ?) " +
@@ -172,9 +164,8 @@ public class DBOperation {
 
     @SneakyThrows
     public static void insertMessage(Message message) {
-        Connection conn = DBConnection.get();
-        String query = "insert into messages values (default, ?, ?, localtimestamp, ?)";
-        PreparedStatement stmt = conn.prepareStatement(query);
+        String QUERY = "insert into messages values (default, ?, ?, localtimestamp, ?)";
+        PreparedStatement stmt = conn.prepareStatement(QUERY);
         stmt.setInt(1, message.getSender());
         stmt.setInt(2, message.getReceiver());
         stmt.setString(3, message.getContent());

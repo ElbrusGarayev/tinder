@@ -11,9 +11,9 @@ public class DBConnection {
         if (conn == null) {
             try{
                 conn = DriverManager.getConnection(
-                        "jdbc:postgresql://ec2-35-171-31-33.compute-1.amazonaws.com/deoq2dpomonefu",
-                        "khcilykbviawgk",
-                        "11db556325dc247da7a87795d80094e9fd489f8be2addbd2b751cd15dd2b2510"
+                        "jdbc:postgresql://ec2-34-197-188-147.compute-1.amazonaws.com:5432/deo8n2r3hvuml8",
+                        "vfqqrouexuyann",
+                        "2d557a8aab585f428b1f6b2e0283fa11ed22451e77f633982a79da05cff7c44d"
                 );
             }catch (SQLException e){
                 e.printStackTrace();

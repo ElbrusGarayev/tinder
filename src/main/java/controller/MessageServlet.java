@@ -31,9 +31,9 @@ public class MessageServlet extends HttpServlet {
         int receiverId = Integer.parseInt(req.getPathInfo().replace("/", ""));
         //User receiver = userService.getUser(receiverId);
         List<Message> messages = service.getAllMessages(sender.getId(), receiverId);
-        messages.forEach(el -> System.out.println(el.toString()));
         data.put("messages", messages);
         data.put("sender", sender.getId());
+        data.put("receiver", userService.getUser(receiverId));
         engine.render("chat.ftl", data, resp);
     }
 

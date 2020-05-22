@@ -1,10 +1,9 @@
-package controller;
+package servlet;
 
 import entity.User;
 import lombok.AllArgsConstructor;
 import service.LikeService;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

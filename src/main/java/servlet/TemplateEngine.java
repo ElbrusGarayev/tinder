@@ -1,4 +1,4 @@
-package controller;
+package servlet;
 
 import freemarker.template.Configuration;
 import freemarker.template.TemplateException;

@@ -1,4 +1,4 @@
-package controller;
+package servlet;
 
 import entity.User;
 import service.LoginService;
@@ -21,12 +21,12 @@ public class LoginServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         engine.render("login.ftl", resp);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         HashMap<String, Object> data = new HashMap<>();
         User user = service.getUser(req.getParameter("email"), req.getParameter("psw"));
         if(user != null) service.updateLastSeen(user);

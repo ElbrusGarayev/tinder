@@ -1,10 +1,9 @@
-package controller;
+package servlet;
 
 import entity.Like;
 import entity.User;
 import service.UserService;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -51,7 +50,13 @@ public class UserServlet extends HttpServlet {
         } else if (button.equals("like") && selected != null) {
             service.addLike(new Like(user.getId(), selected.getId(), true));
             resp.sendRedirect("/users");
-        } else {
+        } else if(button.equals("likes"))
+            resp.sendRedirect("liked");
+        else if(button.equals("logout")){
+            session.removeAttribute("user");
+            resp.sendRedirect("login");
+        }
+        else {
             resp.sendRedirect("/liked");
         }
     }

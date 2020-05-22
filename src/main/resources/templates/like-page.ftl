@@ -29,15 +29,27 @@
                             <br>
                         </div>
                         <div class="col-md-6">
-                            <button type="submit" class="btn btn-outline-danger btn-block" name="button"
-                                    value="dislike"><span
-                                        class="fa fa-times"></span> Dislike
+                            <button type="submit" class="btn btn-outline-danger btn-block mb-2" name="button"
+                                    value="dislike">
+                                <i class="fas fa-heart-broken"></i> Dislike
                             </button>
                         </div>
                         <div class="col-md-6">
-                            <button type="submit" class="btn btn-outline-success btn-block" name="button"
+                            <button type="submit" class="btn btn-outline-success btn-block mb-2" name="button"
                                     value="like"><span
                                         class="fa fa-heart"></span> Like
+                            </button>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-outline-info btn-block mb-2" name="button"
+                                    value="likes"><span
+                                        class="fa fa-heart"></span> Likes
+                            </button>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-outline-warning btn-block mb-2" name="button"
+                                    value="logout">
+                                <i class="fas fa-sign-out-alt"></i> Log out
                             </button>
                         </div>
                     </div>

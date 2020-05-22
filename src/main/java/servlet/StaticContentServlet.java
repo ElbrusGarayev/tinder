@@ -1,4 +1,4 @@
-package controller;
+package servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -18,7 +18,7 @@ public class StaticContentServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         Path path = Paths.get(baseFolder, req.getPathInfo());
         ServletOutputStream os = resp.getOutputStream();
         Files.copy(path, os);

@@ -1,8 +1,7 @@
-import controller.*;
+import servlet.*;
 import dao.DAOLike;
 import dao.DAOMessage;
 import dao.DAOUser;
-import database.DBOperation;
 import filter.MessageFilter;
 import filter.SessionFilter;
 import filter.LoginFilter;

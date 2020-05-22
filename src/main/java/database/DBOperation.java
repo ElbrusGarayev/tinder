@@ -145,7 +145,7 @@ public class DBOperation {
         String query = "select * from messages " +
                 "where (sender = ? and receiver = ?) " +
                 "or (sender = ? and receiver = ?)\n" +
-                "order by datetime asc";
+                "order by id asc";
         PreparedStatement stmt = conn.prepareStatement(query);
         stmt.setInt(1, sender);
         stmt.setInt(2, receiver);
@@ -153,11 +153,10 @@ public class DBOperation {
         stmt.setInt(4, sender);
         ResultSet resultSet = stmt.executeQuery();
         while (resultSet.next()) {
-            int id = resultSet.getInt("id");
             int from = resultSet.getInt("sender");
             int to = resultSet.getInt("receiver");
             String content = resultSet.getString("content");
-            messages.add(new Message(id, from, to, content));
+            messages.add(new Message(from, to, content));
         }
         return messages;
     }

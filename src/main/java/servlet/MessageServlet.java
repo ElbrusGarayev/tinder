@@ -1,14 +1,11 @@
-package controller;
+package servlet;
 
-import entity.Like;
 import entity.Message;
 import entity.User;
 import lombok.AllArgsConstructor;
-import org.eclipse.jetty.server.session.Session;
 import service.MessageService;
 import service.UserService;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

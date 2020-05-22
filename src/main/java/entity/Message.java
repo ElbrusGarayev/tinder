@@ -3,26 +3,21 @@ package entity;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.text.SimpleDateFormat;
+
 @Data
 @RequiredArgsConstructor
 public class Message {
-    private int id;
+
     private int sender;
     private int receiver;
     private String content;
-    private LocalDateTime time;
+    private long date;
+    private String stringDate;
 
-    public Message(int id, int from, int to, String content) {
-        this.id = id;
+    public Message(int from, int to, String content) {
         this.sender = from;
         this.receiver = to;
-        this.content = content;
-    }
-
-    public Message(int sender, int receiver, String content) {
-        this.sender = sender;
-        this.receiver = receiver;
         this.content = content;
     }
 }

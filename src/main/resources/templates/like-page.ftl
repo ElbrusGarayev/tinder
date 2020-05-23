@@ -19,11 +19,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3"></div>
-            <div class="col-md-6" >
+            <div class="col-md-6">
                 <div class="profile bg-light rounded p-2">
                     <div class="row">
                         <div class="col-md-12 text-center">
-                            <img src=${image_url} alt="" class="mx-auto rounded img-fluid" style="max-height: 450px;">
+                            <img src=${image_url} alt="" class="mx-auto rounded img-fluid" style="max-height: 400px;">
                             <h5 class="mt-2 text-truncated">${status}</h5>
                             <h3 class="mt-2 text-truncated">${name} ${surname}</h3>
                             <br>

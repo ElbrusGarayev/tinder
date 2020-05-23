@@ -14,6 +14,19 @@
 
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        .header-one {
+            text-decoration-color: #1b1e21;
+            background: linear-gradient(to right, #f5af19, #f12711);
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .msg-box {
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+    </style>
 </head>
 <body>
 
@@ -22,25 +35,9 @@
         <div class="chat-main col-md-6">
             <div class="col-md-12 chat-header">
                 <div class="row header-one text-white p-1">
-                    <div class="col-md-6 name pl-2">
+                    <div class="col-md-12 name pl-2">
                         <i class="fa fa-comment"></i>
-                        <h6 class="ml-1 mb-0">${receiver.getName()!''}</h6>
-                    </div>
-                    <div class="col-md-6 options text-right pr-0">
-                        <i class="fa fa-window-minimize hide-chat-box hover text-center pt-1"></i>
-                        <p class="arrow-up mb-0">
-                            <i class="fa fa-arrow-up text-center pt-1"></i>
-                        </p>
-                        <i class="fa fa-times hover text-center pt-1"></i>
-                    </div>
-                </div>
-                <div class="row header-two w-100">
-                    <div class="col-md-6 options-left pl-1">
-                        <i class="fa fa-video-camera mr-3"></i>
-                        <i class="fa fa-user-plus"></i>
-                    </div>
-                    <div class="col-md-6 options-right text-right pr-2">
-                        <i class="fa fa-cog"></i>
+                        <h6 class="ml-1 ">${receiver.getName()} ${receiver.getSurname()}</h6>
                     </div>
                 </div>
             </div>
@@ -71,18 +68,15 @@
                         </ul>
                     </#list>
                 </div>
-                <div class="col-md-12 p-2 msg-box border border-primary">
+                <div class="col-md-12 p-2 msg-box border border-danger">
                     <form method="post">
-                        <div class="row align-middle" >
-                            <div class="col-md-10 " >
-                                <input type="text" name="content" class="border-0 w-100 p-3 rounded"
+                        <div class="row">
+                            <div class="col-md-8 mt-2">
+                                <input type="text" name="content" class="border-0 w-100 p-2 rounded"
                                        placeholder=" Send message"/>
                             </div>
-                            <div class="col-md-2">
-                                <input type="submit" class="btn btn-info w-100 p-3" value="Send" name="button"/>
-                            </div>
-                            <div class="col-md-3 text-right options-right">
-                                <i class="fa fa-picture-o mr-2"></i>
+                            <div class="col-md-4 mt-2">
+                                <input type="submit" class="btn btn-warning w-100 p-2" value="Send" name="button"/>
                             </div>
                         </div>
                     </form>

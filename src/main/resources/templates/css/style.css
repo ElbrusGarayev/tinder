@@ -357,7 +357,6 @@ input:focus {
     overflow-x: hidden;
     background: #ECEFF1;
     position: relative;
-    top: 35px;
 }
 
 .chats ul li {
@@ -421,10 +420,6 @@ input:focus {
 
 .receive-msg-time i {
     font-size: 4px;
-}
-
-.msg-box {
-    margin-top: 35px;
 }
 
 .msg-box i {

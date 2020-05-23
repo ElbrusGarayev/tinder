@@ -28,10 +28,10 @@
                         <table class="table-users table" border="0">
                             <tbody>
                             <#list users as user>
-                                <tr onclick="location.href='/messages/${user.getId()}'" class="bg-danger" >
-                                    <td >
+                                <tr onclick="location.href='/messages/${user.getId()}'" class="bg-danger">
+                                    <td>
                                         <div class="avatar-img">
-                                            <img class="img-circle" src="${user.getUrl()}" >  
+                                            <img class="img-circle" src="${user.getUrl()}">  
                                         </div>
                                     </td>
                                     <td class="align-middle">

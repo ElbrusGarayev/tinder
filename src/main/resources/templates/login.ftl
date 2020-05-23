@@ -14,13 +14,12 @@
     <link rel="stylesheet" href="/static/css/style.css">
     <style>
         @import url('https://fonts.googleapis.com/css?family=Great+Vibes&display=swap');
-        .log{
+        .log {
             border: none;
             background: linear-gradient(to right, #F27121, #E94057, #8A2387);
         }
-        .title{
+        .title {
             font-family: Great Vibes;
-            /*font-size: xx-large;*/
         }
     </style>
 </head>
@@ -38,7 +37,7 @@
     <button class="btn btn-lg btn-warning btn-block log" type="submit">Sign in</button>
     <br>
     ${message!''}
-    <label><a href="/register">Sign up</a></label>
+    <label><a href="/register" style="color: darkred">Sign up</a></label>
     <p class="mt-1 mb-3 text-muted">&copy; Tinder 2020</p>
 </form>
 </body>

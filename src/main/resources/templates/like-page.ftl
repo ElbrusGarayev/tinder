@@ -30,8 +30,8 @@
                         </div>
                         <div class="col-md-6">
                             <button type="submit" class="btn btn-outline-danger btn-block mb-2" name="button"
-                                    value="dislike">
-                                <i class="fas fa-heart-broken"></i> Dislike
+                                    value="dislike"><span
+                                        class="fa fa-times"></span> Dislike
                             </button>
                         </div>
                         <div class="col-md-6">
@@ -42,8 +42,8 @@
                         </div>
                         <div class="col-md-6">
                             <button type="submit" class="btn btn-outline-info btn-block mb-2" name="button"
-                                    value="likes"><span
-                                        class="fa fa-heart"></span> Likes
+                                    value="likes">
+                                <i class="fas fa-bookmark"></i> Favorites
                             </button>
                         </div>
                         <div class="col-md-6">

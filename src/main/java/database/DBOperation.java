@@ -5,16 +5,15 @@ import entity.Message;
 import entity.User;
 import lombok.SneakyThrows;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DBOperation {
     private static Connection conn = DBConnection.get();
+    private static SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm");
 
     @SneakyThrows
     public static List<User> getAllUsers() {
@@ -156,7 +155,8 @@ public class DBOperation {
             int from = resultSet.getInt("sender");
             int to = resultSet.getInt("receiver");
             String content = resultSet.getString("content");
-            messages.add(new Message(from, to, content));
+            Timestamp datetime = resultSet.getTimestamp("datetime");
+            messages.add(new Message(from, to, content, formatter.format(datetime)));
         }
         return messages;
     }

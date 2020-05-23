@@ -25,22 +25,24 @@ public class MessageServlet extends HttpServlet {
         HashMap<String, Object> data = new HashMap<>();
         HttpSession session = req.getSession();
         User sender = (User) session.getAttribute("user");
-        int receiverId = Integer.parseInt(req.getPathInfo().replace("/", ""));
-        //User receiver = userService.getUser(receiverId);
-        List<Message> messages = service.getAllMessages(sender.getId(), receiverId);
-        data.put("messages", messages);
-        data.put("sender", sender.getId());
-        data.put("receiver", userService.getUser(receiverId));
-        engine.render("chat.ftl", data, resp);
+        if(sender == null) resp.sendRedirect("/login");
+        else {
+            int receiverId = Integer.parseInt(req.getPathInfo().replace("/", ""));
+            List<Message> messages = service.getAllMessages(sender.getId(), receiverId);
+            data.put("messages", messages);
+            data.put("sender", sender.getId());
+            data.put("receiver", userService.getUser(receiverId));
+            engine.render("chat.ftl", data, resp);
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         HttpSession session = req.getSession();
         int receiverId = Integer.parseInt(req.getPathInfo().replace("/", ""));
-        String text = req.getParameter("content");
+        String content = req.getParameter("content");
         User sender = (User) session.getAttribute("user");
-        service.addMessage(new Message(sender.getId(), receiverId, text));
+        service.addMessage(new Message(sender.getId(), receiverId, content));
         resp.sendRedirect("/messages" + req.getPathInfo());
     }
 }

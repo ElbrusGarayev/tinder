@@ -18,8 +18,8 @@
 <body>
 
 <div class="container">
-    <div class="row">
-        <div class="chat-main col-md-6 offset-3">
+    <div class="row" style="justify-content: space-around;">
+        <div class="chat-main col-md-6">
             <div class="col-md-12 chat-header">
                 <div class="row header-one text-white p-1">
                     <div class="col-md-6 name pl-2">
@@ -53,6 +53,7 @@
                                     <p class="pt-1 pb-1 pl-2 pr-2 m-0 rounded">
                                         ${message.getContent()}
                                     </p>
+                                    <span class="receive-msg-time">${message.getDate()}</span>
                                 </li>
                             <#else>
                                 <li class="receive-msg float-left mb-2">
@@ -63,7 +64,7 @@
                                         <p class="bg-white m-0 pt-1 pb-1 pl-2 pr-2 rounded">
                                             ${message.getContent()}
                                         </p>
-                                        <span class="receive-msg-time">${message.getSender()}, Jan 25, 6:20 PM</span>
+                                        <span class="receive-msg-time">${message.getDate()}</span>
                                     </div>
                                 </li>
                             </#if>
@@ -72,9 +73,10 @@
                 </div>
                 <div class="col-md-12 p-2 msg-box border border-primary">
                     <form method="post">
-                        <div class="row">
-                            <div class="col-md-10">
-                                <input type="text" name="content" class="border-0 w-100 p-3 rounded" placeholder=" Send message"/>
+                        <div class="row align-middle" >
+                            <div class="col-md-10 " >
+                                <input type="text" name="content" class="border-0 w-100 p-3 rounded"
+                                       placeholder=" Send message"/>
                             </div>
                             <div class="col-md-2">
                                 <input type="submit" class="btn btn-info w-100 p-3" value="Send" name="button"/>

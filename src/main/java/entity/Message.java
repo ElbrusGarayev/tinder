@@ -1,5 +1,6 @@
 package entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
@@ -7,17 +8,17 @@ import java.text.SimpleDateFormat;
 
 @Data
 @RequiredArgsConstructor
+@AllArgsConstructor
 public class Message {
 
     private int sender;
     private int receiver;
     private String content;
-    private long date;
-    private String stringDate;
+    private String date;
 
-    public Message(int from, int to, String content) {
-        this.sender = from;
-        this.receiver = to;
+    public Message(int sender, int receiver, String content) {
+        this.sender = sender;
+        this.receiver = receiver;
         this.content = content;
     }
 }

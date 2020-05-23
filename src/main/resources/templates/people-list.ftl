@@ -17,21 +17,21 @@
 <body>
 
 <div class="container">
-    <div class="row">
-        <div class="col-8 offset-2">
+    <div class="row justify-content-around">
+        <div class="col-md-8">
             <div class="panel panel-default user_panel">
-                <div class="panel-heading">
-                    <h3 class="panel-title">User List</h3>
+                <div class="panel-heading bg-warning" STYLE="text-align: center;">
+                    <h3 class="panel-title">FAVORITES</h3>
                 </div>
                 <div class="panel-body">
                     <div class="table-container">
                         <table class="table-users table" border="0">
                             <tbody>
                             <#list users as user>
-                                <tr onclick="location.href='/messages/${user.getId()}'">
-                                    <td width="10">
+                                <tr onclick="location.href='/messages/${user.getId()}'" class="bg-danger" >
+                                    <td >
                                         <div class="avatar-img">
-                                            <img class="img-circle" src=${user.getUrl()}>  
+                                            <img class="img-circle" src="${user.getUrl()}" >  
                                         </div>
                                     </td>
                                     <td class="align-middle">

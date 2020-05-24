@@ -1,5 +1,6 @@
 package filter;
 
+import lombok.AllArgsConstructor;
 import servlet.TemplateEngine;
 import service.LoginService;
 
@@ -8,14 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
-
-public class LoginFilter implements Filter {private final TemplateEngine engine;
+@AllArgsConstructor
+public class LoginFilter implements Filter {
+    private final TemplateEngine engine;
     private final LoginService service;
-
-    public LoginFilter(TemplateEngine engine, LoginService service) {
-        this.engine = engine;
-        this.service = service;
-    }
     @Override
     public void init(FilterConfig filterConfig){
 

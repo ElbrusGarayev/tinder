@@ -1,6 +1,7 @@
 package servlet;
 
 import entity.User;
+import lombok.AllArgsConstructor;
 import service.LoginService;
 
 import javax.servlet.ServletException;
@@ -10,15 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
-
+@AllArgsConstructor
 public class LoginServlet extends HttpServlet {
     private final TemplateEngine engine;
     private final LoginService service;
-
-    public LoginServlet(TemplateEngine engine, LoginService service) {
-        this.engine = engine;
-        this.service = service;
-    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {

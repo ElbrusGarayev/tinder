@@ -1,5 +1,6 @@
 package servlet;
 
+import lombok.AllArgsConstructor;
 import service.RegisterService;
 
 import javax.servlet.http.HttpServlet;

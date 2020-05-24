@@ -7,7 +7,6 @@ import lombok.SneakyThrows;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,11 +30,12 @@ public class DBOperation {
     }
 
     @SneakyThrows
-    public static List<User> getLikedUsers(int user_id) {
+    public static List<User> getLikedUsers(int userId) {
         List<User> users = new ArrayList<>();
         String query = "select  *  from users where id  " +
-                "in(select whom from likes where who=" + user_id + " and status = true)";
+                "in(select whom from likes where who = ? and status = true)";
         PreparedStatement stmt = conn.prepareStatement(query);
+        stmt.setInt(1, userId);
         ResultSet resultSet = stmt.executeQuery();
         while (resultSet.next()) {
             int id = resultSet.getInt("id");
@@ -90,12 +90,14 @@ public class DBOperation {
     }
 
     @SneakyThrows
-    public static List<User> getUsersToDisplay(int user_id) {
+    public static List<User> getUsersToDisplay(int userId) {
         List<User> users = new ArrayList<>();
         String query = "select distinct  u.*  from users u  where" +
-                " u.id not in(select whom from likes where who = " + user_id + ") and " +
-                " u.id<>" + user_id;
+                " u.id not in(select whom from likes where who = ?) and " +
+                " u.id != ?";
         PreparedStatement stmt = conn.prepareStatement(query);
+        stmt.setInt(1, userId);
+        stmt.setInt(2, userId);
         ResultSet resultSet = stmt.executeQuery();
         while (resultSet.next()) {
             int id = resultSet.getInt("id");

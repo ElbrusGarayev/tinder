@@ -4,18 +4,14 @@ import dao.DAOLike;
 import dao.DAOUser;
 import entity.Like;
 import entity.User;
+import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 
 import java.util.List;
-
+@AllArgsConstructor
 public class UserService {
     private final DAOUser daoUser;
     private final DAOLike daoLike;
-
-    public UserService(DAOUser daoUser, DAOLike daoLike) {
-        this.daoUser = daoUser;
-        this.daoLike = daoLike;
-    }
 
     public User getUserToDisplay(User curr) {
         List<User> likedUsers = daoUser.getUsersToDisplay(curr.getId());

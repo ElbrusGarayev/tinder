@@ -25,7 +25,7 @@ public class MessageServlet extends HttpServlet {
         HashMap<String, Object> data = new HashMap<>();
         HttpSession session = req.getSession();
         User sender = (User) session.getAttribute("user");
-        if(sender == null) resp.sendRedirect("/login");
+        if (sender == null) resp.sendRedirect("/login");
         else {
             int receiverId = Integer.parseInt(req.getPathInfo().replace("/", ""));
             List<Message> messages = service.getAllMessages(sender.getId(), receiverId);
@@ -42,7 +42,8 @@ public class MessageServlet extends HttpServlet {
         int receiverId = Integer.parseInt(req.getPathInfo().replace("/", ""));
         String content = req.getParameter("content");
         User sender = (User) session.getAttribute("user");
-        service.addMessage(new Message(sender.getId(), receiverId, content));
+        if (!content.isEmpty())
+            service.addMessage(new Message(sender.getId(), receiverId, content));
         resp.sendRedirect("/messages" + req.getPathInfo());
     }
 }

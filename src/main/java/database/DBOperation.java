@@ -13,7 +13,6 @@ import java.util.List;
 
 public class DBOperation {
     private static Connection conn = DBConnection.getFromURL(HerokuEnv.jdbc_url());
-//    private static Connection conn = DBConnection.getFromURL(HerokuEnv.jdbc_url());
     private static SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm");
 
     @SneakyThrows

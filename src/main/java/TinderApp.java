@@ -1,3 +1,4 @@
+import database.DbSetup;
 import servlet.*;
 import dao.DAOLike;
 import dao.DAOMessage;
@@ -18,6 +19,7 @@ import java.util.EnumSet;
 
 public class TinderApp {
     public static void main(String[] args) throws Exception {
+        DbSetup.migrate(HerokuEnv.jdbc_url(), HerokuEnv.jdbc_username(), HerokuEnv.jdbc_password());
         Server server = new Server(HerokuEnv.port());
         ServletContextHandler handler = new ServletContextHandler(ServletContextHandler.SESSIONS);
         TemplateEngine engine = TemplateEngine.resources("/templates");

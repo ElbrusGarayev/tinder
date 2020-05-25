@@ -1,4 +1,4 @@
-package org.alexr.step.db;
+package database;
 
 import org.flywaydb.core.Flyway;
 import org.flywaydb.core.api.configuration.FluentConfiguration;

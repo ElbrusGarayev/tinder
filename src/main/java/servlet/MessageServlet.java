@@ -40,7 +40,7 @@ public class MessageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         HttpSession session = req.getSession();
         int receiverId = Integer.parseInt(req.getPathInfo().replace("/", ""));
-        String content = req.getParameter("content");
+        String content = (req.getParameter("content")).trim();
         User sender = (User) session.getAttribute("user");
         if (!content.isEmpty())
             service.addMessage(new Message(sender.getId(), receiverId, content));

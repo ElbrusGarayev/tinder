@@ -12,8 +12,8 @@ create table likes
     status boolean not null
 );
 
-alter table likes
-    owner to vfqqrouexuyann;
+-- alter table likes
+--     owner to vfqqrouexuyann;
 
 create unique index likes_id_uindex
     on likes (id);

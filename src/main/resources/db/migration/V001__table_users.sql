@@ -12,8 +12,8 @@ create table users
     lastseen timestamp not null
 );
 
-alter table users
-    owner to vfqqrouexuyann;
+-- alter table users
+--     owner to vfqqrouexuyann;
 
 create unique index users_id_uindex
     on users (id);

@@ -13,8 +13,8 @@ create table messages
     content  varchar
 );
 
--- alter table messages
---     owner to vfqqrouexuyann;
+alter table messages
+    owner to vfqqrouexuyann;
 
 create unique index messages_id_uindex
     on messages (id);

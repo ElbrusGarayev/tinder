@@ -1,6 +1,7 @@
 package service;
 
 import dao.DAOUser;
+import encryption.EncodeDecode;
 import entity.User;
 import lombok.SneakyThrows;
 
@@ -22,7 +23,7 @@ public class RegisterService {
             return "<label class=\"warning\">This email has already used!</label>\n";
         } else if (psw.equals(pswRepeat)) {
             if(url.isEmpty()) url = DEFAULT;
-            User user = new User(email, name, surname, status, psw, url);
+            User user = new User(email, name, surname, status, new EncodeDecode().encrypt(psw), url);
             daoUser.insert(user);
             return "<label class=\"success\">Successfully registered!</label>\n";
         }

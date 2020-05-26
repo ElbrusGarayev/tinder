@@ -1,5 +1,6 @@
 package database;
 
+import encryption.EncodeDecode;
 import entity.Like;
 import entity.Message;
 import entity.User;
@@ -25,7 +26,7 @@ public class DBOperation {
         while (resultSet.next()) {
             int id = resultSet.getInt("id");
             String email = resultSet.getString("email");
-            String password = resultSet.getString("password");
+            String password = new EncodeDecode().decrypt(resultSet.getString("password"));
             users.add(new User(id, email, password));
         }
         return users;

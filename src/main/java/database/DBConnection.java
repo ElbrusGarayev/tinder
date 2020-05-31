@@ -12,13 +12,13 @@ public class DBConnection {
 
     public static Connection get() {
         if (conn == null) {
-            try{
+            try {
                 conn = DriverManager.getConnection(
                         HerokuEnv.jdbc_url(),
                         HerokuEnv.jdbc_username(),
                         HerokuEnv.jdbc_password()
                 );
-            }catch (SQLException e){
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         }

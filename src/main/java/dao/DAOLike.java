@@ -2,16 +2,14 @@ package dao;
 
 import database.DBOperation;
 import entity.Like;
-import entity.User;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
-public class DAOLike implements DAO<Like>{
+public class DAOLike implements DAO<Like> {
     private List<Like> likes;
 
     @Override

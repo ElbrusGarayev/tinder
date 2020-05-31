@@ -15,7 +15,7 @@ import java.util.List;
 public class DBOperation {
 //    private static Connection conn = DBConnection.get();
     private static Connection conn = DBConnection.getFromURL(HerokuEnv.jdbc_url());
-    private static SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm");
+    private static SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm");
 
     @SneakyThrows
     public static List<User> getAllUsers() {

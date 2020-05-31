@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
+
 @AllArgsConstructor
 public class UserServlet extends HttpServlet {
     private final TemplateEngine engine;
@@ -46,13 +47,12 @@ public class UserServlet extends HttpServlet {
         } else if (button.equals("like") && selected != null) {
             service.addLike(new Like(user.getId(), selected.getId(), true));
             resp.sendRedirect("/users");
-        } else if(button.equals("likes"))
+        } else if (button.equals("likes"))
             resp.sendRedirect("liked");
-        else if(button.equals("logout")){
+        else if (button.equals("logout")) {
             session.removeAttribute("user");
             resp.sendRedirect("login");
-        }
-        else {
+        } else {
             resp.sendRedirect("/liked");
         }
     }

@@ -5,15 +5,15 @@ import entity.User;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
-public class DAOUser implements DAO<User>{
+public class DAOUser implements DAO<User> {
     private List<User> users;
 
-    public List<User> getUsersToDisplay(int id ) {
+    public List<User> getUsersToDisplay(int id) {
         try {
             return DBOperation.getUsersToDisplay(id);
         } catch (Exception e) {

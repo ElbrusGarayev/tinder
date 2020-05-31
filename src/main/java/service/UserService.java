@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 
 import java.util.List;
+
 @AllArgsConstructor
 public class UserService {
     private final DAOUser daoUser;
@@ -26,7 +27,7 @@ public class UserService {
     }
 
     @SneakyThrows
-    public User getUser(int id){
+    public User getUser(int id) {
         return daoUser.get(id);
     }
 

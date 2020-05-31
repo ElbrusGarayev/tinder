@@ -12,11 +12,13 @@ public class LoginService {
     public LoginService(DAOUser daoUser) {
         this.daoUser = daoUser;
     }
+
     @SneakyThrows
     public boolean isUserValid(String email, String password) {
         List<User> users = daoUser.getAll();
         return users.stream().anyMatch(user -> user.getPassword().equals(password) && user.getEmail().equals(email));
     }
+
     @SneakyThrows
     public User getUser(String email, String password) {
         List<User> users = daoUser.getAll();
@@ -27,7 +29,8 @@ public class LoginService {
         }
         return null;
     }
-    public void updateLastSeen(User user){
+
+    public void updateLastSeen(User user) {
         daoUser.update(user);
     }
 }

@@ -25,7 +25,7 @@ public class RegisterService {
             if(url.isEmpty()) url = DEFAULT;
             User user = new User(email, name, surname, status, new EncodeDecode().encrypt(psw), url);
             daoUser.insert(user);
-            return "<label class=\"success\">Successfully registered!</label>\n";
+            return "Registered";
         }
         return "<label class=\"error\">Password didn't match, try again!</label>\n";
     }

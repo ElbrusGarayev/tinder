@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-import java.text.SimpleDateFormat;
-
 @Data
 @RequiredArgsConstructor
 @AllArgsConstructor

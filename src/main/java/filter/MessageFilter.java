@@ -8,7 +8,7 @@ import java.io.IOException;
 public class MessageFilter implements Filter {
 
     @Override
-    public void init(FilterConfig filterConfig){
+    public void init(FilterConfig filterConfig) {
 
     }
 
@@ -16,12 +16,12 @@ public class MessageFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
-        if(req.getMethod().equalsIgnoreCase("GET")){
+        if (req.getMethod().equalsIgnoreCase("GET")) {
             if (req.getPathInfo().equalsIgnoreCase("/"))
                 resp.sendRedirect("/list/");
             else
                 filterChain.doFilter(req, resp);
-        }else
+        } else
             filterChain.doFilter(req, resp);
     }
 

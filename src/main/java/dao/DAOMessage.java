@@ -3,11 +3,9 @@ package dao;
 import database.DBOperation;
 import entity.Message;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
-public class DAOMessage implements DAO<Message>{
+public class DAOMessage implements DAO<Message> {
 
     @Override
     public Message get(int id) {
@@ -30,7 +28,7 @@ public class DAOMessage implements DAO<Message>{
     }
 
     @Override
-    public List<Message> getAll(int id){
+    public List<Message> getAll(int id) {
         return null;
     }
 

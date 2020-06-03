@@ -3,6 +3,7 @@ package servlet;
 import entity.Message;
 import entity.User;
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import service.MessageService;
 import service.UserService;
 
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
+@Log4j2
 @AllArgsConstructor
 public class MessageServlet extends HttpServlet {
     private final TemplateEngine engine;
@@ -27,6 +29,7 @@ public class MessageServlet extends HttpServlet {
         User sender = (User) session.getAttribute("user");
         if (sender == null) resp.sendRedirect("/login");
         else {
+            log("GET");
             int receiverId = Integer.parseInt(req.getPathInfo().replace("/", ""));
             List<Message> messages = service.getAllMessages(sender.getId(), receiverId);
             data.put("messages", messages);
@@ -42,8 +45,10 @@ public class MessageServlet extends HttpServlet {
         int receiverId = Integer.parseInt(req.getPathInfo().replace("/", ""));
         String content = (req.getParameter("content")).trim();
         User sender = (User) session.getAttribute("user");
-        if (!content.isEmpty())
+        if (!content.isEmpty()){
+            log("POST");
             service.addMessage(new Message(sender.getId(), receiverId, content));
+        }
         resp.sendRedirect("/messages" + req.getPathInfo());
     }
 }

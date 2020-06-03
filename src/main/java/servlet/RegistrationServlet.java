@@ -1,6 +1,7 @@
 package servlet;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import service.RegisterService;
 
 import javax.servlet.http.HttpServlet;
@@ -9,14 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 
+@Log4j2
+@AllArgsConstructor
 public class RegistrationServlet extends HttpServlet {
-    private final RegisterService service;
     private TemplateEngine engine;
-
-    public RegistrationServlet(TemplateEngine engine, RegisterService service) {
-        this.engine = engine;
-        this.service = service;
-    }
+    private final RegisterService service;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -35,8 +33,10 @@ public class RegistrationServlet extends HttpServlet {
         String url = req.getParameter("url");
         String message = service.registerUser(email, name, surname, status, password, repeat, url);
         if (message.equals("Registered")) {
+            log("POST");
             resp.sendRedirect("/login");
         } else {
+            log("POST");
             data.put("message", message);
         }
         engine.render("signup.ftl", data, resp);

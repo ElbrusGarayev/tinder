@@ -86,9 +86,11 @@ public class DBOperation {
 
     @SneakyThrows
     public static void insertLike(Like like) {
-        String QUERY = String.format("insert into likes values (default, %d, %d, %b)", like.getWho(),
-                like.getWhom(), like.isStatus());
+        String QUERY = "insert into likes values (default, ?, ?, ?)";
         PreparedStatement stmt = conn.prepareStatement(QUERY);
+        stmt.setInt(1, like.getWho());
+        stmt.setInt(2, like.getWhom());
+        stmt.setBoolean(3, like.isStatus());
         stmt.execute();
     }
 

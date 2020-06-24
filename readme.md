@@ -19,6 +19,5 @@ Password: tester
  * [Heroku](https://dashboard.heroku.com/apps) - Used for Deployment
  * [Bootstrap](https://getbootstrap.com/) - Framework used
  
-## Authors
+## Author
  * [Elbrus Garayev](https://github.com/ElbrusGarayev)
- * [Ramil Huseynov](https://github.com/RamilArslan)
